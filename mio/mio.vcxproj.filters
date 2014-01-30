@@ -1,0 +1,632 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Data Structures">
+      <UniqueIdentifier>{c3be61c8-332a-4df5-9448-b568964627d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mathematics">
+      <UniqueIdentifier>{1e4d58ff-75ff-481f-8986-db3699034bfe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene Graph">
+      <UniqueIdentifier>{5a5e9f8c-97c4-4eff-be7a-298ed5e6d997}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene Graph\Visitors">
+      <UniqueIdentifier>{b7e28ef2-409e-4a08-86e3-d19dc98bf2b9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Base">
+      <UniqueIdentifier>{63ac9080-6c16-4d84-a79f-2c42b5104b6d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Material">
+      <UniqueIdentifier>{3f508341-ef5e-45ed-9cdd-19eccc05f688}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Material\Visitors">
+      <UniqueIdentifier>{e848aa99-0277-473c-8139-fdbb54ffce88}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Geometry">
+      <UniqueIdentifier>{665b99fe-f059-4517-b743-76fd22b62361}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Geometry\Visitors">
+      <UniqueIdentifier>{55af30c5-2757-4e30-bbde-2e557c351586}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="IL">
+      <UniqueIdentifier>{94bac18c-09cb-4e75-a5c2-234e275a10ea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GL">
+      <UniqueIdentifier>{f5711c8f-9579-4ea0-8427-925fd41b8cde}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Textures">
+      <UniqueIdentifier>{03fb559e-7296-4a5a-8e78-8f5ea7003dae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Textures\Visitors">
+      <UniqueIdentifier>{f41ebf4f-465a-4b00-baaf-4d1232494df8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utility">
+      <UniqueIdentifier>{372b4290-772a-48a9-b4a2-9dd84aa6104e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Visitor">
+      <UniqueIdentifier>{2bdd73fb-93b2-4c46-b633-74d92de29272}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Rigging">
+      <UniqueIdentifier>{8ed1f5ba-73b7-4cde-93e0-7cdfe10ac33e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="IK">
+      <UniqueIdentifier>{0a8ebf7a-6613-430b-860d-f7337ea0251e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Skinning">
+      <UniqueIdentifier>{2e71a2d4-58a9-45f2-a8ef-304ef8229168}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Curve">
+      <UniqueIdentifier>{d58969a4-9ab9-4ca6-82b4-afc47e8873c3}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\include\mio\array.h">
+      <Filter>Data Structures</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mio\box.h">
+      <Filter>Data Structures</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mio\int3.h">
+      <Filter>Data Structures</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mio\mio_object.h">
+      <Filter>Data Structures</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mio\ray.h">
+      <Filter>Data Structures</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mio\reference.h">
+      <Filter>Data Structures</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mio\reference_counted.h">
+      <Filter>Data Structures</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mio\rgb.h">
+      <Filter>Data Structures</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mio\rgba.h">
+      <Filter>Data Structures</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mio\soa_data_structures.h">
+      <Filter>Data Structures</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mio\uniform_grid.h">
+      <Filter>Data Structures</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mio\uv.h">
+      <Filter>Data Structures</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mio\matrix4x4.h">
+      <Filter>Mathematics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mio\point3.h">
+      <Filter>Mathematics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mio\quaternion.h">
+      <Filter>Mathematics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mio\transform.h">
+      <Filter>Mathematics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mio\vector3.h">
+      <Filter>Mathematics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mio\scenegraph\group.h">
+      <Filter>Scene Graph</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mio\scenegraph\node.h">
+      <Filter>Scene Graph</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mio\scenegraph\rigged_primitive.h">
+      <Filter>Scene Graph</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mio\scenegraph\simple_primitive.h">
+      <Filter>Scene Graph</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mio\scenegraph\transform_node.h">
+      <Filter>Scene Graph</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mio\scenegraph\node_visitor.h">
+      <Filter>Scene Graph\Visitors</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mio\asserts.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mio\definitions.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mio\exceptions.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mio\mio.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mio\material\by_polygon_material_mapping.h">
+      <Filter>Material</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mio\material\material.h">
+      <Filter>Material</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mio\material\material_list.h">
+      <Filter>Material</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mio\material\material_mapping.h">
+      <Filter>Material</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mio\material\mqo_material.h">
+      <Filter>Material</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mio\material\phong_material.h">
+      <Filter>Material</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mio\material\textured_mqo_material.h">
+      <Filter>Material</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mio\material\textured_phong_material.h">
+      <Filter>Material</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mio\material\material_mapping_visitor.h">
+      <Filter>Material\Visitors</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mio\material\material_visitor.h">
+      <Filter>Material\Visitors</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mio\geometry\indexed_mesh.h">
+      <Filter>Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mio\geometry\mesh.h">
+      <Filter>Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mio\geometry\mesh_visitor.h">
+      <Filter>Geometry\Visitors</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mio\il\il_exception.h">
+      <Filter>IL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mio\il\il_image.h">
+      <Filter>IL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mio\il\il_image_service.h">
+      <Filter>IL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mio\gl\gl_exception.h">
+      <Filter>GL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mio\gl\gl_renderer.h">
+      <Filter>GL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mio\gl\gl_texture.h">
+      <Filter>GL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mio\texture\il_texture.h">
+      <Filter>Textures</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mio\texture\indexed_texture_mapping.h">
+      <Filter>Textures</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mio\texture\lazy_il_texture.h">
+      <Filter>Textures</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mio\texture\texture.h">
+      <Filter>Textures</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mio\texture\texture_mapping.h">
+      <Filter>Textures</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mio\texture\texture_mapping_visitor.h">
+      <Filter>Textures\Visitors</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mio\texture\texture_visitor.h">
+      <Filter>Textures\Visitors</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mio\utility\path.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mio\utility\string.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mio\visitor\omni_visitor.h">
+      <Filter>Visitor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mio\rigging\armature.h">
+      <Filter>Rigging</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mio\rigging\joint.h">
+      <Filter>Rigging</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mio\rigging\joint_change.h">
+      <Filter>Rigging</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mio\rigging\pose.h">
+      <Filter>Rigging</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mio\rigging\pose_animation.h">
+      <Filter>Rigging</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mio\ik\ik_armature.h">
+      <Filter>IK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mio\ik\ik_end_effector.h">
+      <Filter>IK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mio\ik\ik_end_effector_goals.h">
+      <Filter>IK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mio\ik\ik_joint.h">
+      <Filter>IK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mio\ik\ik_joint_parameters.h">
+      <Filter>IK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mio\ik\ik_pose.h">
+      <Filter>IK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mio\skinning\indexed_joint_weight_mapping.h">
+      <Filter>Skinning</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mio\skinning\joint_weight_mapping.h">
+      <Filter>Skinning</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mio\curve\curve.h">
+      <Filter>Curve</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\mio\curve\polyline.h">
+      <Filter>Curve</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="box.cpp">
+      <Filter>Data Structures</Filter>
+    </ClCompile>
+    <ClCompile Include="mio_object.cpp">
+      <Filter>Data Structures</Filter>
+    </ClCompile>
+    <ClCompile Include="uv.cpp">
+      <Filter>Data Structures</Filter>
+    </ClCompile>
+    <ClCompile Include="matrix4x4.cpp">
+      <Filter>Mathematics</Filter>
+    </ClCompile>
+    <ClCompile Include="point3.cpp">
+      <Filter>Mathematics</Filter>
+    </ClCompile>
+    <ClCompile Include="quaternion.cpp">
+      <Filter>Mathematics</Filter>
+    </ClCompile>
+    <ClCompile Include="transform.cpp">
+      <Filter>Mathematics</Filter>
+    </ClCompile>
+    <ClCompile Include="vector3.cpp">
+      <Filter>Mathematics</Filter>
+    </ClCompile>
+    <ClCompile Include="scenegraph\group.cpp">
+      <Filter>Scene Graph</Filter>
+    </ClCompile>
+    <ClCompile Include="scenegraph\node.cpp">
+      <Filter>Scene Graph</Filter>
+    </ClCompile>
+    <ClCompile Include="scenegraph\rigged_primitive.cpp">
+      <Filter>Scene Graph</Filter>
+    </ClCompile>
+    <ClCompile Include="scenegraph\simple_primitive.cpp">
+      <Filter>Scene Graph</Filter>
+    </ClCompile>
+    <ClCompile Include="scenegraph\transform_node.cpp">
+      <Filter>Scene Graph</Filter>
+    </ClCompile>
+    <ClCompile Include="scenegraph\node_visitor.cpp">
+      <Filter>Scene Graph\Visitors</Filter>
+    </ClCompile>
+    <ClCompile Include="material\by_polygon_material_mapping.cpp">
+      <Filter>Material</Filter>
+    </ClCompile>
+    <ClCompile Include="material\material.cpp">
+      <Filter>Material</Filter>
+    </ClCompile>
+    <ClCompile Include="material\material_list.cpp">
+      <Filter>Material</Filter>
+    </ClCompile>
+    <ClCompile Include="material\material_mapping.cpp">
+      <Filter>Material</Filter>
+    </ClCompile>
+    <ClCompile Include="material\mqo_material.cpp">
+      <Filter>Material</Filter>
+    </ClCompile>
+    <ClCompile Include="material\phong_material.cpp">
+      <Filter>Material</Filter>
+    </ClCompile>
+    <ClCompile Include="material\textured_mqo_material.cpp">
+      <Filter>Material</Filter>
+    </ClCompile>
+    <ClCompile Include="material\textured_phong_material.cpp">
+      <Filter>Material</Filter>
+    </ClCompile>
+    <ClCompile Include="material\material_mapping_visitor.cpp">
+      <Filter>Material\Visitors</Filter>
+    </ClCompile>
+    <ClCompile Include="material\material_visitor.cpp">
+      <Filter>Material\Visitors</Filter>
+    </ClCompile>
+    <ClCompile Include="geometry\indexed_mesh.cpp">
+      <Filter>Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="geometry\mesh.cpp">
+      <Filter>Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="geometry\mesh_visitor.cpp">
+      <Filter>Geometry\Visitors</Filter>
+    </ClCompile>
+    <ClCompile Include="il\il_exception.cpp">
+      <Filter>IL</Filter>
+    </ClCompile>
+    <ClCompile Include="il\il_image.cpp">
+      <Filter>IL</Filter>
+    </ClCompile>
+    <ClCompile Include="il\il_image_service.cpp">
+      <Filter>IL</Filter>
+    </ClCompile>
+    <ClCompile Include="gl\gl_exception.cpp">
+      <Filter>GL</Filter>
+    </ClCompile>
+    <ClCompile Include="gl\gl_renderer.cpp">
+      <Filter>GL</Filter>
+    </ClCompile>
+    <ClCompile Include="gl\gl_texture.cpp">
+      <Filter>GL</Filter>
+    </ClCompile>
+    <ClCompile Include="texture\il_texture.cpp">
+      <Filter>Textures</Filter>
+    </ClCompile>
+    <ClCompile Include="texture\indexed_texture_mapping.cpp">
+      <Filter>Textures</Filter>
+    </ClCompile>
+    <ClCompile Include="texture\lazy_il_texture.cpp">
+      <Filter>Textures</Filter>
+    </ClCompile>
+    <ClCompile Include="texture\texture.cpp">
+      <Filter>Textures</Filter>
+    </ClCompile>
+    <ClCompile Include="texture\texture_mapping.cpp">
+      <Filter>Textures</Filter>
+    </ClCompile>
+    <ClCompile Include="texture\texture_mapping_visitor.cpp">
+      <Filter>Textures\Visitors</Filter>
+    </ClCompile>
+    <ClCompile Include="texture\texture_visitor.cpp">
+      <Filter>Textures\Visitors</Filter>
+    </ClCompile>
+    <ClCompile Include="utility\path.cpp">
+      <Filter>Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="utility\string.cpp">
+      <Filter>Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="visitor\omni_visitor.cpp">
+      <Filter>Visitor</Filter>
+    </ClCompile>
+    <ClCompile Include="rigging\armature.cpp">
+      <Filter>Rigging</Filter>
+    </ClCompile>
+    <ClCompile Include="rigging\joint.cpp">
+      <Filter>Rigging</Filter>
+    </ClCompile>
+    <ClCompile Include="rigging\joint_change.cpp">
+      <Filter>Rigging</Filter>
+    </ClCompile>
+    <ClCompile Include="rigging\pose.cpp">
+      <Filter>Rigging</Filter>
+    </ClCompile>
+    <ClCompile Include="rigging\pose_animation.cpp">
+      <Filter>Rigging</Filter>
+    </ClCompile>
+    <ClCompile Include="ik\ik_armature.cpp">
+      <Filter>IK</Filter>
+    </ClCompile>
+    <ClCompile Include="ik\ik_end_effector.cpp">
+      <Filter>IK</Filter>
+    </ClCompile>
+    <ClCompile Include="ik\ik_end_effector_goals.cpp">
+      <Filter>IK</Filter>
+    </ClCompile>
+    <ClCompile Include="ik\ik_joint.cpp">
+      <Filter>IK</Filter>
+    </ClCompile>
+    <ClCompile Include="ik\ik_joint_parameters.cpp">
+      <Filter>IK</Filter>
+    </ClCompile>
+    <ClCompile Include="ik\ik_pose.cpp">
+      <Filter>IK</Filter>
+    </ClCompile>
+    <ClCompile Include="skinning\indexed_joint_weight_mapping.cpp">
+      <Filter>Skinning</Filter>
+    </ClCompile>
+    <ClCompile Include="skinning\joint_weight_mapping.cpp">
+      <Filter>Skinning</Filter>
+    </ClCompile>
+    <ClCompile Include="curve\curve.cpp">
+      <Filter>Curve</Filter>
+    </ClCompile>
+    <ClCompile Include="curve\polyline.cpp">
+      <Filter>Curve</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\include\mio\box.i">
+      <Filter>Data Structures</Filter>
+    </None>
+    <None Include="..\include\mio\int3.i">
+      <Filter>Data Structures</Filter>
+    </None>
+    <None Include="..\include\mio\mio_object.i">
+      <Filter>Data Structures</Filter>
+    </None>
+    <None Include="..\include\mio\ray.i">
+      <Filter>Data Structures</Filter>
+    </None>
+    <None Include="..\include\mio\reference_counted.i">
+      <Filter>Data Structures</Filter>
+    </None>
+    <None Include="..\include\mio\rgb.i">
+      <Filter>Data Structures</Filter>
+    </None>
+    <None Include="..\include\mio\rgba.i">
+      <Filter>Data Structures</Filter>
+    </None>
+    <None Include="..\include\mio\uv.i">
+      <Filter>Data Structures</Filter>
+    </None>
+    <None Include="..\include\mio\matrix4x4.i">
+      <Filter>Mathematics</Filter>
+    </None>
+    <None Include="..\include\mio\point3.i">
+      <Filter>Mathematics</Filter>
+    </None>
+    <None Include="..\include\mio\quaternion.i">
+      <Filter>Mathematics</Filter>
+    </None>
+    <None Include="..\include\mio\transform.i">
+      <Filter>Mathematics</Filter>
+    </None>
+    <None Include="..\include\mio\vector3.i">
+      <Filter>Mathematics</Filter>
+    </None>
+    <None Include="..\include\mio\scenegraph\group.i">
+      <Filter>Scene Graph</Filter>
+    </None>
+    <None Include="..\include\mio\scenegraph\node.i">
+      <Filter>Scene Graph</Filter>
+    </None>
+    <None Include="..\include\mio\scenegraph\rigged_primitive.i">
+      <Filter>Scene Graph</Filter>
+    </None>
+    <None Include="..\include\mio\scenegraph\simple_primitive.i">
+      <Filter>Scene Graph</Filter>
+    </None>
+    <None Include="..\include\mio\scenegraph\node_visitor.i">
+      <Filter>Scene Graph\Visitors</Filter>
+    </None>
+    <None Include="..\include\mio\material\by_polygon_material_mapping.i">
+      <Filter>Material</Filter>
+    </None>
+    <None Include="..\include\mio\material\material.i">
+      <Filter>Material</Filter>
+    </None>
+    <None Include="..\include\mio\material\material_list.i">
+      <Filter>Material</Filter>
+    </None>
+    <None Include="..\include\mio\material\material_mapping.i">
+      <Filter>Material</Filter>
+    </None>
+    <None Include="..\include\mio\material\mqo_material.i">
+      <Filter>Material</Filter>
+    </None>
+    <None Include="..\include\mio\material\phong_material.i">
+      <Filter>Material</Filter>
+    </None>
+    <None Include="..\include\mio\material\textured_mqo_material.i">
+      <Filter>Material</Filter>
+    </None>
+    <None Include="..\include\mio\material\textured_phong_material.i">
+      <Filter>Material</Filter>
+    </None>
+    <None Include="..\include\mio\material\material_mapping_visitor.i">
+      <Filter>Material\Visitors</Filter>
+    </None>
+    <None Include="..\include\mio\material\material_visitor.i">
+      <Filter>Material\Visitors</Filter>
+    </None>
+    <None Include="..\include\mio\geometry\indexed_mesh.i">
+      <Filter>Geometry</Filter>
+    </None>
+    <None Include="..\include\mio\geometry\mesh.i">
+      <Filter>Geometry</Filter>
+    </None>
+    <None Include="..\include\mio\geometry\mesh_visitor.i">
+      <Filter>Geometry\Visitors</Filter>
+    </None>
+    <None Include="..\include\mio\il\il_image.i">
+      <Filter>IL</Filter>
+    </None>
+    <None Include="..\include\mio\il\il_image_service.i">
+      <Filter>IL</Filter>
+    </None>
+    <None Include="..\include\mio\gl\gl_renderer.i">
+      <Filter>GL</Filter>
+    </None>
+    <None Include="..\include\mio\gl\gl_texture.i">
+      <Filter>GL</Filter>
+    </None>
+    <None Include="..\include\mio\texture\il_texture.i">
+      <Filter>Textures</Filter>
+    </None>
+    <None Include="..\include\mio\texture\indexed_texture_mapping.i">
+      <Filter>Textures</Filter>
+    </None>
+    <None Include="..\include\mio\texture\lazy_il_texture.i">
+      <Filter>Textures</Filter>
+    </None>
+    <None Include="..\include\mio\texture\texture.i">
+      <Filter>Textures</Filter>
+    </None>
+    <None Include="..\include\mio\texture\texture_mapping.i">
+      <Filter>Textures</Filter>
+    </None>
+    <None Include="..\include\mio\texture\texture_mapping_visitor.i">
+      <Filter>Textures\Visitors</Filter>
+    </None>
+    <None Include="..\include\mio\texture\texture_visitor.i">
+      <Filter>Textures\Visitors</Filter>
+    </None>
+    <None Include="..\include\mio\visitor\omni_visitor.i">
+      <Filter>Visitor</Filter>
+    </None>
+    <None Include="..\include\mio\rigging\armature.i">
+      <Filter>Rigging</Filter>
+    </None>
+    <None Include="..\include\mio\rigging\joint.i">
+      <Filter>Rigging</Filter>
+    </None>
+    <None Include="..\include\mio\rigging\joint_change.i">
+      <Filter>Rigging</Filter>
+    </None>
+    <None Include="..\include\mio\rigging\pose.i">
+      <Filter>Rigging</Filter>
+    </None>
+    <None Include="..\include\mio\rigging\pose_animation.i">
+      <Filter>Rigging</Filter>
+    </None>
+    <None Include="..\include\mio\ik\ik_armature.i">
+      <Filter>IK</Filter>
+    </None>
+    <None Include="..\include\mio\ik\ik_end_effector.i">
+      <Filter>IK</Filter>
+    </None>
+    <None Include="..\include\mio\ik\ik_end_effector_goals.i">
+      <Filter>IK</Filter>
+    </None>
+    <None Include="..\include\mio\ik\ik_joint.i">
+      <Filter>IK</Filter>
+    </None>
+    <None Include="..\include\mio\ik\ik_joint_parameters.i">
+      <Filter>IK</Filter>
+    </None>
+    <None Include="..\include\mio\ik\ik_pose.i">
+      <Filter>IK</Filter>
+    </None>
+    <None Include="..\include\mio\skinning\indexed_joint_weight_mapping.i">
+      <Filter>Skinning</Filter>
+    </None>
+    <None Include="..\include\mio\skinning\joint_weight_mapping.i">
+      <Filter>Skinning</Filter>
+    </None>
+    <None Include="..\include\mio\scenegraph\transform_node.i">
+      <Filter>Skinning</Filter>
+    </None>
+    <None Include="..\include\mio\curve\curve.i">
+      <Filter>Curve</Filter>
+    </None>
+    <None Include="..\include\mio\curve\polyline.i">
+      <Filter>Curve</Filter>
+    </None>
+  </ItemGroup>
+</Project>

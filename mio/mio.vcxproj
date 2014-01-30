@@ -1,0 +1,299 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{AEC5FF46-A67A-44B8-A376-378344987CF6}</ProjectGuid>
+    <RootNamespace>mio</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>NotSet</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>NotSet</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>12.0.21005.1</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir>$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir>$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)\include;$(CUDA_INC_PATH);$(CG_INC_PATH);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;MIO_DLL;MIO_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader />
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>glu32.lib;opengl32.lib;DevIL.lib;ILU.lib;ILUT.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)\lib;$(SolutionDir)\$(Configuration);$(CUDA_LIB_PATH);$(CG_LIB_PATH);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+    <PostBuildEvent>
+      <Command>echo Copying mio.dll...
+copy $(OutDir)mio.dll $(SolutionDir)\script
+</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <Optimization>Full</Optimization>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
+      <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)\include;$(CUDA_INC_PATH);$(CG_INC_PATH);$(SolutionDir);$(SolutionDir)\include\lapackpp;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;MIO_DLL;MIO_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <PrecompiledHeader />
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>glu32.lib;opengl32.lib;DevIL.lib;ILU.lib;ILUT.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)\lib;$(SolutionDir)\$(Configuration);$(CUDA_LIB_PATH);$(CG_LIB_PATH);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+    <PostBuildEvent>
+      <Command>echo Copying mio.dll...
+copy $(OutDir)mio.dll $(SolutionDir)\script
+</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="..\include\mio\array.h" />
+    <ClInclude Include="..\include\mio\box.h" />
+    <ClInclude Include="..\include\mio\int3.h" />
+    <ClInclude Include="..\include\mio\mio_object.h" />
+    <ClInclude Include="..\include\mio\ray.h" />
+    <ClInclude Include="..\include\mio\reference.h" />
+    <ClInclude Include="..\include\mio\reference_counted.h" />
+    <ClInclude Include="..\include\mio\rgb.h" />
+    <ClInclude Include="..\include\mio\rgba.h" />
+    <ClInclude Include="..\include\mio\soa_data_structures.h" />
+    <ClInclude Include="..\include\mio\uniform_grid.h" />
+    <ClInclude Include="..\include\mio\uv.h" />
+    <ClInclude Include="..\include\mio\matrix4x4.h" />
+    <ClInclude Include="..\include\mio\point3.h" />
+    <ClInclude Include="..\include\mio\quaternion.h" />
+    <ClInclude Include="..\include\mio\transform.h" />
+    <ClInclude Include="..\include\mio\vector3.h" />
+    <ClInclude Include="..\include\mio\scenegraph\group.h" />
+    <ClInclude Include="..\include\mio\scenegraph\node.h" />
+    <ClInclude Include="..\include\mio\scenegraph\rigged_primitive.h" />
+    <ClInclude Include="..\include\mio\scenegraph\simple_primitive.h" />
+    <ClInclude Include="..\include\mio\scenegraph\transform_node.h" />
+    <ClInclude Include="..\include\mio\scenegraph\node_visitor.h" />
+    <ClInclude Include="..\include\mio\asserts.h" />
+    <ClInclude Include="..\include\mio\definitions.h" />
+    <ClInclude Include="..\include\mio\exceptions.h" />
+    <ClInclude Include="..\include\mio\mio.h" />
+    <ClInclude Include="..\include\mio\material\by_polygon_material_mapping.h" />
+    <ClInclude Include="..\include\mio\material\material.h" />
+    <ClInclude Include="..\include\mio\material\material_list.h" />
+    <ClInclude Include="..\include\mio\material\material_mapping.h" />
+    <ClInclude Include="..\include\mio\material\mqo_material.h" />
+    <ClInclude Include="..\include\mio\material\phong_material.h" />
+    <ClInclude Include="..\include\mio\material\textured_mqo_material.h" />
+    <ClInclude Include="..\include\mio\material\textured_phong_material.h" />
+    <ClInclude Include="..\include\mio\material\material_mapping_visitor.h" />
+    <ClInclude Include="..\include\mio\material\material_visitor.h" />
+    <ClInclude Include="..\include\mio\geometry\indexed_mesh.h" />
+    <ClInclude Include="..\include\mio\geometry\mesh.h" />
+    <ClInclude Include="..\include\mio\geometry\mesh_visitor.h" />
+    <ClInclude Include="..\include\mio\il\il_exception.h" />
+    <ClInclude Include="..\include\mio\il\il_image.h" />
+    <ClInclude Include="..\include\mio\il\il_image_service.h" />
+    <ClInclude Include="..\include\mio\gl\gl_exception.h" />
+    <ClInclude Include="..\include\mio\gl\gl_renderer.h" />
+    <ClInclude Include="..\include\mio\gl\gl_texture.h" />
+    <ClInclude Include="..\include\mio\texture\il_texture.h" />
+    <ClInclude Include="..\include\mio\texture\indexed_texture_mapping.h" />
+    <ClInclude Include="..\include\mio\texture\lazy_il_texture.h" />
+    <ClInclude Include="..\include\mio\texture\texture.h" />
+    <ClInclude Include="..\include\mio\texture\texture_mapping.h" />
+    <ClInclude Include="..\include\mio\texture\texture_mapping_visitor.h" />
+    <ClInclude Include="..\include\mio\texture\texture_visitor.h" />
+    <ClInclude Include="..\include\mio\utility\path.h" />
+    <ClInclude Include="..\include\mio\utility\string.h" />
+    <ClInclude Include="..\include\mio\visitor\omni_visitor.h" />
+    <ClInclude Include="..\include\mio\rigging\armature.h" />
+    <ClInclude Include="..\include\mio\rigging\joint.h" />
+    <ClInclude Include="..\include\mio\rigging\joint_change.h" />
+    <ClInclude Include="..\include\mio\rigging\pose.h" />
+    <ClInclude Include="..\include\mio\rigging\pose_animation.h" />
+    <ClInclude Include="..\include\mio\ik\ik_armature.h" />
+    <ClInclude Include="..\include\mio\ik\ik_end_effector.h" />
+    <ClInclude Include="..\include\mio\ik\ik_end_effector_goals.h" />
+    <ClInclude Include="..\include\mio\ik\ik_joint.h" />
+    <ClInclude Include="..\include\mio\ik\ik_joint_parameters.h" />
+    <ClInclude Include="..\include\mio\ik\ik_pose.h" />
+    <ClInclude Include="..\include\mio\skinning\indexed_joint_weight_mapping.h" />
+    <ClInclude Include="..\include\mio\skinning\joint_weight_mapping.h" />
+    <ClInclude Include="..\include\mio\curve\curve.h" />
+    <ClInclude Include="..\include\mio\curve\polyline.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="box.cpp" />
+    <ClCompile Include="mio_object.cpp" />
+    <ClCompile Include="uv.cpp" />
+    <ClCompile Include="matrix4x4.cpp" />
+    <ClCompile Include="point3.cpp" />
+    <ClCompile Include="quaternion.cpp" />
+    <ClCompile Include="transform.cpp" />
+    <ClCompile Include="vector3.cpp" />
+    <ClCompile Include="scenegraph\group.cpp" />
+    <ClCompile Include="scenegraph\node.cpp" />
+    <ClCompile Include="scenegraph\rigged_primitive.cpp" />
+    <ClCompile Include="scenegraph\simple_primitive.cpp" />
+    <ClCompile Include="scenegraph\transform_node.cpp" />
+    <ClCompile Include="scenegraph\node_visitor.cpp" />
+    <ClCompile Include="material\by_polygon_material_mapping.cpp" />
+    <ClCompile Include="material\material.cpp" />
+    <ClCompile Include="material\material_list.cpp" />
+    <ClCompile Include="material\material_mapping.cpp" />
+    <ClCompile Include="material\mqo_material.cpp" />
+    <ClCompile Include="material\phong_material.cpp" />
+    <ClCompile Include="material\textured_mqo_material.cpp" />
+    <ClCompile Include="material\textured_phong_material.cpp" />
+    <ClCompile Include="material\material_mapping_visitor.cpp" />
+    <ClCompile Include="material\material_visitor.cpp" />
+    <ClCompile Include="geometry\indexed_mesh.cpp" />
+    <ClCompile Include="geometry\mesh.cpp" />
+    <ClCompile Include="geometry\mesh_visitor.cpp" />
+    <ClCompile Include="il\il_exception.cpp" />
+    <ClCompile Include="il\il_image.cpp" />
+    <ClCompile Include="il\il_image_service.cpp" />
+    <ClCompile Include="gl\gl_exception.cpp" />
+    <ClCompile Include="gl\gl_renderer.cpp" />
+    <ClCompile Include="gl\gl_texture.cpp" />
+    <ClCompile Include="texture\il_texture.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
+      <XMLDocumentationFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)%(Filename)1.xdc</XMLDocumentationFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
+      <XMLDocumentationFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename)1.xdc</XMLDocumentationFileName>
+    </ClCompile>
+    <ClCompile Include="texture\indexed_texture_mapping.cpp" />
+    <ClCompile Include="texture\lazy_il_texture.cpp" />
+    <ClCompile Include="texture\texture.cpp" />
+    <ClCompile Include="texture\texture_mapping.cpp" />
+    <ClCompile Include="texture\texture_mapping_visitor.cpp" />
+    <ClCompile Include="texture\texture_visitor.cpp" />
+    <ClCompile Include="utility\path.cpp" />
+    <ClCompile Include="utility\string.cpp" />
+    <ClCompile Include="visitor\omni_visitor.cpp" />
+    <ClCompile Include="rigging\armature.cpp" />
+    <ClCompile Include="rigging\joint.cpp" />
+    <ClCompile Include="rigging\joint_change.cpp" />
+    <ClCompile Include="rigging\pose.cpp" />
+    <ClCompile Include="rigging\pose_animation.cpp" />
+    <ClCompile Include="ik\ik_armature.cpp" />
+    <ClCompile Include="ik\ik_end_effector.cpp" />
+    <ClCompile Include="ik\ik_end_effector_goals.cpp" />
+    <ClCompile Include="ik\ik_joint.cpp" />
+    <ClCompile Include="ik\ik_joint_parameters.cpp" />
+    <ClCompile Include="ik\ik_pose.cpp" />
+    <ClCompile Include="skinning\indexed_joint_weight_mapping.cpp" />
+    <ClCompile Include="skinning\joint_weight_mapping.cpp" />
+    <ClCompile Include="curve\curve.cpp" />
+    <ClCompile Include="curve\polyline.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\include\mio\box.i" />
+    <None Include="..\include\mio\int3.i" />
+    <None Include="..\include\mio\mio_object.i" />
+    <None Include="..\include\mio\ray.i" />
+    <None Include="..\include\mio\reference_counted.i" />
+    <None Include="..\include\mio\rgb.i" />
+    <None Include="..\include\mio\rgba.i" />
+    <None Include="..\include\mio\uv.i" />
+    <None Include="..\include\mio\matrix4x4.i" />
+    <None Include="..\include\mio\point3.i" />
+    <None Include="..\include\mio\quaternion.i" />
+    <None Include="..\include\mio\transform.i" />
+    <None Include="..\include\mio\vector3.i" />
+    <None Include="..\include\mio\scenegraph\group.i" />
+    <None Include="..\include\mio\scenegraph\node.i" />
+    <None Include="..\include\mio\scenegraph\rigged_primitive.i" />
+    <None Include="..\include\mio\scenegraph\simple_primitive.i" />
+    <None Include="..\include\mio\scenegraph\node_visitor.i" />
+    <None Include="..\include\mio\material\by_polygon_material_mapping.i" />
+    <None Include="..\include\mio\material\material.i" />
+    <None Include="..\include\mio\material\material_list.i" />
+    <None Include="..\include\mio\material\material_mapping.i" />
+    <None Include="..\include\mio\material\mqo_material.i" />
+    <None Include="..\include\mio\material\phong_material.i" />
+    <None Include="..\include\mio\material\textured_mqo_material.i" />
+    <None Include="..\include\mio\material\textured_phong_material.i" />
+    <None Include="..\include\mio\material\material_mapping_visitor.i" />
+    <None Include="..\include\mio\material\material_visitor.i" />
+    <None Include="..\include\mio\geometry\indexed_mesh.i" />
+    <None Include="..\include\mio\geometry\mesh.i" />
+    <None Include="..\include\mio\geometry\mesh_visitor.i" />
+    <None Include="..\include\mio\il\il_image.i" />
+    <None Include="..\include\mio\il\il_image_service.i" />
+    <None Include="..\include\mio\gl\gl_renderer.i" />
+    <None Include="..\include\mio\gl\gl_texture.i" />
+    <None Include="..\include\mio\texture\il_texture.i" />
+    <None Include="..\include\mio\texture\indexed_texture_mapping.i" />
+    <None Include="..\include\mio\texture\lazy_il_texture.i" />
+    <None Include="..\include\mio\texture\texture.i" />
+    <None Include="..\include\mio\texture\texture_mapping.i" />
+    <None Include="..\include\mio\texture\texture_mapping_visitor.i" />
+    <None Include="..\include\mio\texture\texture_visitor.i" />
+    <None Include="..\include\mio\visitor\omni_visitor.i" />
+    <None Include="..\include\mio\rigging\armature.i" />
+    <None Include="..\include\mio\rigging\joint.i" />
+    <None Include="..\include\mio\rigging\joint_change.i" />
+    <None Include="..\include\mio\rigging\pose.i" />
+    <None Include="..\include\mio\rigging\pose_animation.i" />
+    <None Include="..\include\mio\ik\ik_armature.i" />
+    <None Include="..\include\mio\ik\ik_end_effector.i" />
+    <None Include="..\include\mio\ik\ik_end_effector_goals.i" />
+    <None Include="..\include\mio\ik\ik_joint.i" />
+    <None Include="..\include\mio\ik\ik_joint_parameters.i" />
+    <None Include="..\include\mio\ik\ik_pose.i" />
+    <None Include="..\include\mio\skinning\indexed_joint_weight_mapping.i" />
+    <None Include="..\include\mio\skinning\joint_weight_mapping.i" />
+    <None Include="..\include\mio\scenegraph\transform_node.i" />
+    <None Include="..\include\mio\curve\curve.i" />
+    <None Include="..\include\mio\curve\polyline.i" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

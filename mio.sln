@@ -1,19 +1,18 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 9.00
-# Visual Studio 2005
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "mio", "mio\mio.vcproj", "{AEC5FF46-A67A-44B8-A376-378344987CF6}"
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Express 2013 for Windows Desktop
+VisualStudioVersion = 12.0.30110.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "mio", "mio\mio.vcxproj", "{AEC5FF46-A67A-44B8-A376-378344987CF6}"
 	ProjectSection(WebsiteProperties) = preProject
 		Debug.AspNetCompiler.Debug = "True"
 		Release.AspNetCompiler.Debug = "False"
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cmio", "cmio\cmio.vcproj", "{F9041B51-3CB8-46D8-8184-74AAFE0D0729}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cmio", "cmio\cmio.vcxproj", "{F9041B51-3CB8-46D8-8184-74AAFE0D0729}"
 	ProjectSection(WebsiteProperties) = preProject
 		Debug.AspNetCompiler.Debug = "True"
 		Release.AspNetCompiler.Debug = "False"
-	EndProjectSection
-	ProjectSection(ProjectDependencies) = postProject
-		{AEC5FF46-A67A-44B8-A376-378344987CF6} = {AEC5FF46-A67A-44B8-A376-378344987CF6}
 	EndProjectSection
 EndProject
 Global

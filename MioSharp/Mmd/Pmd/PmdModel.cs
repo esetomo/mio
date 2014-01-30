@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MioSharp.IK;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,7 +16,17 @@ namespace MioSharp.Mmd.Pmd
         private readonly int triangleCount;
         private readonly List<int> triangleVertexIndex = new List<int>();
         private readonly List<Material> materials = new List<Material>();
+        
         private readonly List<Bone> bones = new List<Bone>();
+        internal IReadOnlyCollection<Bone> Bones { get { return bones; } }
+
+        private readonly Dictionary<string, Bone> bonesByName = new Dictionary<string, Bone>();
+        internal IReadOnlyDictionary<string, Bone> BonesByName { get { return bonesByName; } }
+        internal Bone GetBoneByName(string name)
+        {
+            return bonesByName[name];
+        }
+
         private readonly List<IKChain> ikChains = new List<IKChain>();
         private readonly Expression baseExpression;
         private readonly List<Expression> expressions = new List<Expression>();
@@ -38,7 +49,11 @@ namespace MioSharp.Mmd.Pmd
                 materials.Add(new Material(materialInfo));
 
             foreach (var boneInfo in raw.BoneList.Data)
-                bones.Add(new Bone(boneInfo));
+            {
+                var bone = new Bone(boneInfo); 
+                bones.Add(bone);
+                bonesByName[bone.Name] = bone;
+            }
 
             foreach (var ikChainInfo in raw.IKList.Data)
                 ikChains.Add(new IKChain(ikChainInfo));
@@ -59,6 +74,16 @@ namespace MioSharp.Mmd.Pmd
         }
 
         public object GetRestArmature()
+        {
+            throw new NotImplementedException();
+        }
+
+        internal IKArmature GetIkArmature()
+        {
+            throw new NotImplementedException();
+        }
+
+        internal Rigging.Pose GetIkLessPose(object vpd_pose)
         {
             throw new NotImplementedException();
         }

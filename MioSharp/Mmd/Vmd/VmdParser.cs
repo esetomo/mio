@@ -45,8 +45,13 @@ namespace MioSharp.Mmd.Vmd
             }
 
             private readonly VmdHeader header;
+            public VmdHeader Header { get { return header; } }
+
             private readonly List<VmdBoneFrame> boneFrames = new List<VmdBoneFrame>();
+            public IReadOnlyCollection<VmdBoneFrame> BoneFrames { get { return boneFrames; } }
+
             private readonly List<VmdExpressionFrame> expressionFrames = new List<VmdExpressionFrame>();
+            public IReadOnlyCollection<VmdExpressionFrame> ExpressionFrames { get { return expressionFrames; } }
         }
 
         internal class VmdHeader
@@ -106,10 +111,19 @@ namespace MioSharp.Mmd.Vmd
             }
 
             private readonly string boneName;
+            public string BoneName { get { return boneName; } }
+
             private readonly int frameNumber;
+            public int FrameNumber { get { return frameNumber; } }
+
             private readonly Vector3D position;
+            public Vector3D Position { get { return position; } }
+
             private readonly Quaternion orientation;
+            public Quaternion Orientation { get { return orientation; } }
+
             private readonly byte[] padding;
+            public byte[] Padding { get { return padding; } }
         }
 
         internal class VmdExpressionFrame

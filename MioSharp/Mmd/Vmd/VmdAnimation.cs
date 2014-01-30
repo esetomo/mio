@@ -5,6 +5,11 @@ namespace MioSharp.Mmd.Vmd
 {
     public class VmdAnimation
     {
+        internal VmdAnimation(VmdParser.VmdData raw)
+        {
+            throw new NotImplementedException();
+        }
+
         public int GetFirstFrame()
         {
             throw new NotImplementedException();

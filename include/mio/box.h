@@ -5,6 +5,7 @@
 #include <mio/vector3.h>
 #include <mio/point3.h>
 #include <mio/ray.h>
+#include <algorithm>
 #include <iostream>
 
 namespace mio

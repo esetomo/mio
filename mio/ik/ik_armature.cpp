@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <iostream>
 #include <stdio.h>
 #include <mio/ik/ik_armature.h>

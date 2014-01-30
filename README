@@ -1,0 +1,220 @@
+=======
+= mio =
+=======
+Version: 0.1
+Release: May 2009
+Author: dragonmeteor
+
+mio is a library for manipulating computer graphics data.
+
+The kinds of data it can deal with now include:
+
+* Basic polygonal meshes, texture, texture mapping, and 
+  materials (Lambertian and Phong).
+* Articulated models and skinning.
+* Joint animation.
+* Armatures with inverse kinematics control.
+
+mio can solve basic inverse kinematics problems using the 
+selctively damped least square algorithm (SLDS). It can 
+also render static and deformable meshes using OpenGL.
+
+mio can read three kinds of data intended to be used
+by the free animation program MikuMikuDance: 
+model (.pmd), pose (.vpd), and animation (.vmd). It can
+pose and animate the model accordingly, so mio can
+be used to convert those data into other formats.
+
+Currenly, mio can only convert VMD animation data
+to Biovision BVH format. Two interfaces for this 
+conversion are provided:
+
+* vmd2bvh -- command line interface
+* vmdviewer -- a GUI VMD file viewer which
+  can perform the conversion as well.
+
+------------
+Installation
+------------
+
+mio only runs on Microsoft Windows, and needs the
+following software/library.
+
+* OpenGL (Anything higher than 1.1 is fine, I guess.)
+* GLUT for Win32 3.7.6
+* DevIL 1.7.8 (included in the distribution)
+* Python 2.6
+* PyOpenGL 3.0
+* PyQt 4.4.4 for Python 2.6
+* SWIG 1.3.30 (for building only)
+
+If you have these software/library properly setup,
+decompressing the archive containing this file
+should be enough. By "properly setup," I mean:
+
+* The following files should be accessible from Windows
+  search path:
+
+  - opengl32.dll, glu32.dll, glut32.dll
+
+  - python26.dll, python.exe, pythonw.exe
+
+  - DevIL.dll, ILU.dll, ILUT.dll
+
+  The last three files can be copied from 
+  the "lib" directory to C:\Windows\system32.
+  
+* Python should be able to access PyOpenGL and
+  PyQt.
+
+-------------
+Using vmd2bvh
+-------------
+
+Let's say you decompress mio into C:\mio.
+
+You have motion data of the song "Go My Way" 
+(C:\motions\gomae.vmd), and you want to convert
+the motion as performed by Hatsune Miku 
+(C:\models\miku.pmd) to BVH format.
+
+First, change your directory to C:\mio.
+
+> cd C:\mio
+
+And invoke:
+
+> python script\vmd2bvh.py C:\models\miku.pmd C:\motions\gomae.vmd
+
+The output BVH data will be written to 
+C:\motions\miku-gomae.bvh. (The format of the output
+file name is <<motion dir>>\<<model name>>-<<motion name>>.bvh)
+
+You can also specify the name of the output file yourself 
+as the third parameter. For example:
+
+> python script\vmd2bvh.py C:\models\miku.pmd C:\motions\gomae.vmd C:\xyz\dance.bvh
+
+Joint names are written in English by default. If you want
+to see Japanese names, use the "-l japanese" option:
+
+> python script\vmd2bvh.py -l japanese C:\models\miku.pmd C:\motion\gomae.vmd
+
+You can also scale the outputted skeleton by a constant factor.
+Specify the factor using the "-s <<factor>>" option:
+
+> python script\vmd2bvh.py -s 10 C:\models\miku.pmd C:\motion\gomae.vmd
+
+With this, the skeleton in the output file will be ten times
+bigger than the original.
+
+---------------
+Using vmdviewer
+---------------
+
+To launch the viewer, either double click vmdviewer.pyw
+in the "script" directory or invoke:
+
+> pythonw script\vmdviewer.pyw
+
+I've made a video explaining how to use the program,
+and uploaded it to Nico Nico Douga. You should know
+where that video is if you know how to download this file.
+
+------------
+Building mio
+------------
+
+mio consists of two parts. The first is the Python
+code, adn the second is the Python extension written
+in C++. The Python part does not need to be built.
+For the C++ part, a Visual Studio 2005 solution file is provided. 
+
+To use VS2005 (I'm sure VS2008 Express works as well)
+ to build mio, you need to do the following:
+
+* Install SWIG (http://www.swig.org) at least version 1.3.39
+  and make sure swig.exe is in Windows search path.
+
+* Set the environmental variable PYTHON_INCLUDE to the
+  "include" directory in your Python directory, and
+  PYTHON_LIB to the "libs" directory. For example,
+  if you install Python in C:\Python26, then the two
+  variables should be as follows:
+
+  PYTHON_INCLUDE should be C:\Python26\include
+  PYTHON_LIB should be C:\Python26\libs
+
+Then VS2005 should be able to build mio's Python
+extension without a problem.
+
+---------
+Licensing
+---------
+
+mio is licensed under the Gnu General Public License Version 3
+(GPLv3). The license can be found in the file "COPYING" or at 
+http://www.gnu.org/copyleft/gpl.html
+
+----------
+Disclaimer
+----------
+
+For the legal stuff, see COPYING.
+
+Also, please do not contact me for problems you have with mio.
+I do not guarantee that I will respond.
+
+-------
+Credits
+-------
+
+mio consists of a number of borrowed pieces of code.
+
+* script/pymio/mmd/pmd/pmd_parser.py is based on pmd2blender 
+  ver 1.3 by BouKiCHi. (http://clogging.blog57.fc2.com/)
+  I believe he/she allows people to use his/her code as long
+  as he is attributed.
+
+* data/mmd/dictionary.txt is based on uimac's VMDMotionImporter
+  for Blender. (http://sites.google.com/a/render.jp/vmdimporter/Home)
+  uimac released VMDMotionImporter under GPL.
+
+* script/pymio/ui/arcball_camera.py,
+  script/pymio/ui/arcball_window.py,
+  script/pymio/ui/glut_window.py
+  were ported to Python from Eugene Hsu's (http://people.csail.mit.edu/ehsu/)
+  C++ arcball camera code. 
+  I have received his permission to release the ported code.
+
+* mio/include/vector3.h
+  mio/include/point3.h
+  are based on pbrt 1.03 (http://www.pbrt.org) by
+  Matt Pharr and Greg Humphrey.
+  pbrt is licensed under GPLv2.
+
+* mio/matrix4x4.cpp contains snippets of code from
+  http://www.geometrictools.com/LibFoundation/Mathematics/Wm4Matrix4.inl
+  by David Eberly. The code is licensed under LGPL2+
+
+* mio contains source code of the Eigen linear algebra library
+  (http://eigen.tuxfamily.org). Eigen is licensed under LGPL3+.
+
+--------------
+Special Thanks
+--------------
+
+* YUMIN (http://yumin3123.at.webry.info/) 
+  for publishing the source code of VMDConverter.
+  I learned how to read VMD file by reading
+  his/her code.
+
+* Samuel Buss (http://math.ucsd.edu/~sbuss/) and Jin-Su Kim
+  for making their inverse kinematics paper available.
+
+---------------
+Version History
+---------------
+
+May 11, 2009
+* First version.

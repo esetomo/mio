@@ -12,7 +12,7 @@ namespace MioSharp.Mmd.Pmd
         public static PmdModel Parse(string fileName)
         {
             var raw = Read(fileName);
-            return PmdModel.MakePmdModel(raw);
+            return new PmdModel(raw);
         }
 
         /// <summary>
@@ -27,18 +27,11 @@ namespace MioSharp.Mmd.Pmd
                 string directory = Path.GetDirectoryName(fileName);
                 var dPmd = new PmdData(f);
 
-#if false
-                    for i in xrange(len(d_pmd["Material"])):
-        material = d_pmd["Material"][i]
-        if len(material[-1]) > 0:
-            material = material[:-1] + (os.path.abspath(os.path.join(directory, material[-1])),)
-            d_pmd["Material"][i] = material
-        
-    for i, bone in enumerate(d_pmd["Bone"]):        
-        d_pmd["Bone"][i] = (Dictionary.to_english(bone[0]),) + bone[1:]             
-    for i, morph in enumerate(d_pmd["Skin"]):
-        d_pmd["Skin"][i] = (Dictionary.to_english(morph[0]),) + morph[1:]    
-#endif
+                foreach (var material in dPmd.MaterialList.Data)
+                {
+                    if (material.BmpFile.Length > 0)
+                        material.BmpFile = Path.GetFullPath(Path.Combine(directory, material.BmpFile));
+                }
 
                 return dPmd;
             }
@@ -219,7 +212,7 @@ namespace MioSharp.Mmd.Pmd
                 edge = reader.ReadUInt32();
 
                 byte[] buf = reader.ReadBytes(20);
-                bmpfile = FileEncoding.GetString(buf, 0, Array.IndexOf(buf, (byte)0));
+                BmpFile = FileEncoding.GetString(buf, 0, Array.IndexOf(buf, (byte)0));
             }
 
             private readonly float[] data = new float[11];
@@ -234,8 +227,7 @@ namespace MioSharp.Mmd.Pmd
             private readonly UInt32 edge;
             public UInt32 Edge { get { return edge; } }
 
-            private readonly string bmpfile;
-            public string BmpFile { get { return bmpfile; } }
+            public string BmpFile { get; internal set; }
         }
 
         internal class PmdBoneList
@@ -260,6 +252,7 @@ namespace MioSharp.Mmd.Pmd
             {
                 byte[] buf = reader.ReadBytes(20);
                 name = FileEncoding.GetString(buf, 0, Array.IndexOf(buf, (byte)0));
+                name = NameDictionary.ToEnglish(name);
 
                 for (int i = 0; i < data.Length; i++)
                     data[i] = reader.ReadUInt16();
@@ -275,7 +268,7 @@ namespace MioSharp.Mmd.Pmd
             public string Name { get { return name; } }
 
             private readonly UInt16[] data = new UInt16[2];
-            public IReadOnlyCollection<UInt16> Date { get { return data; } }
+            public IReadOnlyCollection<UInt16> Data { get { return data; } }
 
             private readonly byte kind;
             public byte Kind { get { return kind; } }
@@ -354,6 +347,7 @@ namespace MioSharp.Mmd.Pmd
             {
                 byte[] buf = reader.ReadBytes(20);
                 name = FileEncoding.GetString(buf, 0, Array.IndexOf(buf, (byte)0));
+                name = NameDictionary.ToEnglish(name);
 
                 skinSize = reader.ReadUInt32();
                 parm = reader.ReadByte();
@@ -379,16 +373,17 @@ namespace MioSharp.Mmd.Pmd
         {
             public PmdSkinVertex(BinaryReader reader)
             {
-                for (int i = 0; i < data1.Length; i++)
-                    data1[i] = reader.ReadUInt32();
-                data2 = reader.ReadSingle();
+                data1 = reader.ReadUInt32();
+
+                for (int i = 0; i < data2.Length; i++)
+                    data2[i] = reader.ReadSingle();
             }
 
-            private readonly UInt32[] data1 = new UInt32[3];
-            public IReadOnlyCollection<UInt32> Data1 { get { return data1; } }
+            private readonly UInt32 data1;
+            public UInt32 Data1 { get { return data1; } }
 
-            private readonly float data2;
-            public float Data2 { get { return data2; } }
+            private readonly float[] data2 = new float[3];
+            public IReadOnlyCollection<float> Data2 { get { return data2; } }
         }
 
         internal class PmdSkinIndexList

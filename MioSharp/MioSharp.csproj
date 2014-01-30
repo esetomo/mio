@@ -30,6 +30,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -37,11 +39,19 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Exporter\BvhExporter.cs" />
+    <Compile Include="Mmd\NameDictionary.cs" />
+    <Compile Include="Mmd\Pmd\Bone.cs" />
+    <Compile Include="Mmd\Pmd\Expression.cs" />
+    <Compile Include="Mmd\Pmd\IKChain.cs" />
+    <Compile Include="Mmd\Pmd\Material.cs" />
     <Compile Include="Mmd\Pmd\PmdModel.cs" />
     <Compile Include="Mmd\Pmd\PmdParser.cs" />
+    <Compile Include="Mmd\Pmd\Vertex.cs" />
+    <Compile Include="Mmd\Pmd\VertexModification.cs" />
     <Compile Include="Mmd\Vmd\VmdAnimation.cs" />
     <Compile Include="Mmd\Vmd\VmdParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

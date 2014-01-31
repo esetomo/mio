@@ -3,29 +3,103 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media.Media3D;
 
 namespace MioSharp.Rigging
 {
     public class Armature
     {
-        internal Joint GetJoint(string p)
+        private readonly List<Joint> joints = new List<Joint>();
+        private readonly Dictionary<string, int> nameToIndexMap = new Dictionary<string, int>();
+
+        public Armature()
         {
-            throw new NotImplementedException();
         }
 
-        internal Joint GetJoint(int p)
+        public Armature(Armature other)
         {
-            throw new NotImplementedException();
+            for(int i=0; i<other.joints.Count(); i++)
+			{
+                Joint newJoint = new Joint(other.joints[i]);
+                AppendJoint(newJoint);
+			}
+        }
+
+        internal Joint GetJoint(string name)
+        {
+            if (! nameToIndexMap.ContainsKey(name))
+				throw new ValueException("Armature::get_joint() : no joint with the given name.");
+
+            int jointIndex = nameToIndexMap[name];
+            return joints[jointIndex];
+        }
+
+        internal Joint GetJoint(int index)
+        {
+            if(index < 0 || index >= joints.Count)
+                throw new IndexException("Armature::get_joint() : joint index out of range");
+
+            return joints[index];
         }
 
         internal void AppendJoint(Joint joint)
         {
-            throw new NotImplementedException();
+            var jointName = joint.Name;
+            if(nameToIndexMap.ContainsKey(jointName))
+                throw new ValueException("Armature::append_joint() : joint with the same name already exist");
+
+            joints.Add(joint);
+            joint.Index = joints.Count - 1;
+            nameToIndexMap[jointName] = joint.Index;
         }
 
-        internal void SetParent(string p1, string p2)
+        internal void SetParent(int childIndex, int parentIndex)
         {
-            throw new NotImplementedException();
+            if (childIndex < 0 || childIndex >= joints.Count())
+                throw new IndexException("Armature::set_parent() : child index out of range");
+            if (parentIndex < -1 || parentIndex >= joints.Count())
+                throw new IndexException("Armature::set_parent() : parent index out of range");
+            if (parentIndex == childIndex)
+                throw new IndexException("Armature::set_parent() : parent index same as child index");
+
+            joints[childIndex].ParentIndex = parentIndex;
+        }
+
+        internal void SetParent(string childName, string parentName)
+        {
+            Joint child = GetJoint(childName);
+            Joint parent = GetJoint(parentName);
+            SetParent(child.Index, parent.Index);
+        }
+
+        internal int GetJointCount()
+        {
+            return joints.Count;
+        }
+
+        internal void Morph(Armature result, Pose pose)
+        {
+            if (result.GetJointCount() != GetJointCount())
+                throw new ValueException("Armature::morph() : result armature does not have the same number of joints.");
+
+            for (int joint_index = 0; joint_index < GetJointCount(); joint_index++)
+            {
+                Joint joint = GetJoint(joint_index);
+                JointChange joint_change = pose.GetJointChange(joint.Name);
+
+                Vector3D new_position = joint.Position + joint_change.Position;
+                Quaternion new_orientation = joint.Orientation * joint_change.Orientation;
+                result.SetJointParameter(joint_index, new_position, new_orientation);
+            }
+        }
+
+        private void SetJointParameter(int index, Vector3D position, Quaternion orientation)
+        {
+            if (index < 0 || index >= joints.Count)
+                throw new IndexException("Armature::set_joint_parameter() : joint index out of range");
+
+            joints[index].Position = position;
+            joints[index].Orientation = orientation;
         }
     }
 }

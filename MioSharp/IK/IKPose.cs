@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MioSharp.Rigging;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +9,13 @@ namespace MioSharp.IK
 {
     public class IKPose
     {
+        internal IKPose()
+        {
+            NormalPose = new Pose();
+            EndEffectorGoals = new IKEndEffectorGoals();
+        }
+
+        internal Pose NormalPose { get; set; }
+        internal IKEndEffectorGoals EndEffectorGoals { get; set; }
     }
 }

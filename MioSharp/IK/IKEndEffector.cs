@@ -7,9 +7,19 @@ namespace MioSharp.IK
 {
     public class IKEndEffector
     {
-        internal void AppendIkJointIndex(int p)
+        private readonly string name;
+        private readonly int index;
+        private readonly List<int> ikJointIndices = new List<int>();
+
+        public IKEndEffector(string name, int index)
         {
-            throw new NotImplementedException();
+            this.name = name;
+            this.index = index;
+        }
+
+        internal void AppendIkJointIndex(int index)
+        {
+            ikJointIndices.Add(index);
         }
     }
 }

@@ -6,6 +6,7 @@ using MioSharp.IK;
 using MioSharp.Rigging;
 using MioSharp.Curve;
 using System.Windows.Media.Media3D;
+using MioSharp.Mmd.Vpd;
 
 namespace MioSharp.Mmd.Vmd
 {
@@ -70,7 +71,7 @@ namespace MioSharp.Mmd.Vmd
 
             var ikJointCurves = new Dictionary<string, Polyline<JointChange>>();
             foreach (var ikJoint in ikArmature.GetIkJoints())
-                ikJointCurves[ikJoint.GetName()] = new Polyline<JointChange>();
+                ikJointCurves[ikJoint.Name] = new Polyline_JointChange();
 
             while (frames.Count > 0)
             {
@@ -129,7 +130,7 @@ namespace MioSharp.Mmd.Vmd
             foreach (var boneFrame in boneFrames)
             {
                 if (!curves.ContainsKey(boneFrame.BoneName))
-                    curves[boneFrame.BoneName] = new Polyline<JointChange>();
+                    curves[boneFrame.BoneName] = new Polyline_JointChange();
                 var position = new Vector3D(boneFrame.Position.X, boneFrame.Position.Y, -boneFrame.Position.Z);
                 // var z_flip_matrix = matrix4x4.scale(1, 1, -1);
                 var orientation = new Quaternion(boneFrame.Orientation.X,
@@ -162,7 +163,7 @@ namespace MioSharp.Mmd.Vmd
                 if (bone.BoneType == Bone.BONE_ROTATION_INFLUENCED)
                 {
                     var sourceBone = pmdModel.Bones.ElementAt(bone.IkBoneIndex);
-                    var boneCurve = new Polyline<JointChange>();
+                    var boneCurve = new Polyline_JointChange();
                     if (curves.ContainsKey(sourceBone.Name))
                     {
                         var sourceCurve = curves[sourceBone.Name];
@@ -180,9 +181,18 @@ namespace MioSharp.Mmd.Vmd
             return poseAnimation;
         }
 
-        private object GetVpdPose(Dictionary<string, Polyline<JointChange>> curves, PmdModel pmdModel, double earliestTime)
+        private VpdPose GetVpdPose(Dictionary<string, Polyline<JointChange>> curves, PmdModel pmdModel, float time)
         {
-            throw new NotImplementedException();
+            var vpdPose = new VpdPose();
+            foreach (var item in curves)
+            {
+                var boneName = item.Key;
+                var curve = item.Value;
+                var jointChange = curve.Evaluate(time);
+                vpdPose.SetJointChange(boneName, jointChange);
+            }
+
+            return vpdPose;
         }
 
         private Dictionary<string, Polyline<JointChange>> GetBoneCurves()
@@ -191,7 +201,7 @@ namespace MioSharp.Mmd.Vmd
             foreach (var boneFrame in boneFrames)
             {
                 if (!curves.ContainsKey(boneFrame.BoneName))
-                    curves[boneFrame.BoneName] = new Polyline<JointChange>();
+                    curves[boneFrame.BoneName] = new Polyline_JointChange();
 
                 var position = boneFrame.Position;
                 var orientation = boneFrame.Orientation;

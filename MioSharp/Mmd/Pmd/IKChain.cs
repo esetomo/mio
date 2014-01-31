@@ -11,7 +11,7 @@ namespace MioSharp.Mmd.Pmd
         {
             ikBoneIndex = info.Parm1.ElementAt(0);
             endEffectorIndex = info.Parm1.ElementAt(1);
-            affectedBoneIndices = info.Bones;
+            affectedBoneIndices = info.Bones.Select((i) => (int)i).ToList();
             constant0 = info.Parm3;
             constant1 = info.Parm4;
         }
@@ -22,8 +22,8 @@ namespace MioSharp.Mmd.Pmd
         private readonly int endEffectorIndex;
         public int EndEffectorIndex { get { return endEffectorIndex; } }
         
-        private readonly IReadOnlyCollection<UInt16> affectedBoneIndices;
-        public IReadOnlyCollection<UInt16> AffectedBoneIndices { get { return affectedBoneIndices; } }
+        private readonly IReadOnlyCollection<int> affectedBoneIndices;
+        public IReadOnlyCollection<int> AffectedBoneIndices { get { return affectedBoneIndices; } }
 
         private readonly UInt16 constant0;
         public UInt16 Constant0 { get { return constant0; } }

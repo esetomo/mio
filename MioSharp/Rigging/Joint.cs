@@ -9,16 +9,34 @@ namespace MioSharp.Rigging
 {
     public class Joint
     {
-        public Joint(string p, Point3D position, Quaternion quaternion)
+        public Joint(string name, Vector3D position, Quaternion orientation)
         {
-            throw new NotImplementedException();
+            this.name = name;
+            this.Position = position;
+            this.Orientation = orientation;
         }
 
-        public int Index { get { throw new NotImplementedException(); } }
-
-        internal string GetName()
+        public Joint(Joint other)
         {
-            throw new NotImplementedException();
+            this.name = other.name;
+            this.Position = other.Position;
+            this.Orientation = other.Orientation;
         }
+
+        public Joint(string name)
+        {
+            this.name = name;
+            this.Position = new Vector3D();
+            this.Orientation = new Quaternion();
+        }
+
+        private readonly string name;
+        public string Name { get { return name; } }
+        
+        public Vector3D Position { get; set; }
+        public Quaternion Orientation { get; set; }
+
+        public int Index { get; set; }
+        public int ParentIndex { get; set; }
     }
 }

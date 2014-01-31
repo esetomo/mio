@@ -46,8 +46,11 @@
     <Compile Include="Exporter\BvhExporter.cs" />
     <Compile Include="IK\IKArmature.cs" />
     <Compile Include="IK\IKEndEffector.cs" />
+    <Compile Include="IK\IKEndEffectorGoals.cs" />
     <Compile Include="IK\IKJoint.cs" />
+    <Compile Include="IK\IKJointParameters.cs" />
     <Compile Include="IK\IKPose.cs" />
+    <Compile Include="IndexException.cs" />
     <Compile Include="Mmd\NameDictionary.cs" />
     <Compile Include="Mmd\Pmd\Bone.cs" />
     <Compile Include="Mmd\Pmd\Expression.cs" />
@@ -59,12 +62,14 @@
     <Compile Include="Mmd\Pmd\VertexModification.cs" />
     <Compile Include="Mmd\Vmd\VmdAnimation.cs" />
     <Compile Include="Mmd\Vmd\VmdParser.cs" />
+    <Compile Include="Mmd\Vpd\VpdPose.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rigging\Armature.cs" />
     <Compile Include="Rigging\Joint.cs" />
     <Compile Include="Rigging\JointChange.cs" />
     <Compile Include="Rigging\Pose.cs" />
     <Compile Include="Rigging\PoseAnimation.cs" />
+    <Compile Include="ValueException.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

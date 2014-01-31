@@ -27,6 +27,7 @@ namespace MioSharp.Mmd.Pmd
             position = new Point3D(info.Pos.ElementAt(0),
                                    info.Pos.ElementAt(1),
                                    info.Pos.ElementAt(2));
+            Index = -1;
         }
 
         private readonly string name;
@@ -46,5 +47,7 @@ namespace MioSharp.Mmd.Pmd
 
         private readonly Point3D position;
         public Point3D Position { get { return position; } }
+
+        public int Index { get; set; }
     }
 }

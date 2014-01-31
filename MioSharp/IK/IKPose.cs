@@ -17,5 +17,10 @@ namespace MioSharp.IK
 
         internal Pose NormalPose { get; set; }
         internal IKEndEffectorGoals EndEffectorGoals { get; set; }
+
+        internal void SetNormalPose(Pose chain_normal_pose)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -9,6 +9,12 @@ namespace MioSharp.Rigging
 {
     public class JointChange
     {
+        public JointChange()
+        {
+            this.position = new Vector3D();
+            this.orientation = new Quaternion();
+        }
+
         public JointChange(Vector3D position, Quaternion orientation)
         {
             this.position = position;

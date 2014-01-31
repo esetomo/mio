@@ -142,5 +142,15 @@ namespace MioSharp.IK
 
             return ikJointsByName[ikJointName];
         }
+
+        internal Armature GetRestArmature()
+        {
+            throw new NotImplementedException();
+        }
+
+        internal void SolveForPose(Pose result_pose, IKPose chain_ik_pose, int p1, double p2)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

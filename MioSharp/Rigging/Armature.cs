@@ -101,5 +101,55 @@ namespace MioSharp.Rigging
             joints[index].Position = position;
             joints[index].Orientation = orientation;
         }
+
+        internal Point3D GetJointWorldPosition(string jointName)
+        {
+            Joint joint = GetJoint(jointName);
+            return GetJointWorldPosition(joint.Index);
+        }
+
+        internal Point3D GetJointWorldPosition(int jointIndex)
+        {
+            if (jointIndex < 0 || jointIndex >= joints.Count)
+                throw new IndexException("Armature::get_joint_world_position() : joint index out of range");
+
+            Point3D result = new Point3D(0, 0, 0);
+            while (jointIndex >= 0)
+            {
+                Joint joint = joints[jointIndex];
+                var m = Matrix3D.Identity;
+                m.Rotate(joint.Orientation);
+                result = m.Transform(result);
+                result += joint.Position;
+                jointIndex = joint.ParentIndex;
+            }
+            return result;
+        }
+
+        internal Quaternion GetJointWorldOrientation(string jointName)
+        {
+            Joint joint = GetJoint(jointName);
+            return GetJointWorldOrientation(joint.Index);
+        }
+
+        private Quaternion GetJointWorldOrientation(int jointIndex)
+        {
+            if (jointIndex < 0 || jointIndex >= joints.Count)
+					throw new IndexException("Armature::get_joint_world_orientation() : joint index out of range");
+
+            Quaternion result = new Quaternion();
+            while (jointIndex >= 0)
+            {
+                Joint joint = joints[jointIndex];
+                result = joint.Orientation * result;
+                jointIndex = joint.ParentIndex;
+            }
+            return result;
+        }
+
+        internal void SetJointParameter(string root_name, Vector3D vector3D, Quaternion root_orientation)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

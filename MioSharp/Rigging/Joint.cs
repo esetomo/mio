@@ -14,6 +14,8 @@ namespace MioSharp.Rigging
             this.name = name;
             this.Position = position;
             this.Orientation = orientation;
+            this.Index = -1;
+            this.ParentIndex = -1;
         }
 
         public Joint(Joint other)
@@ -21,6 +23,8 @@ namespace MioSharp.Rigging
             this.name = other.name;
             this.Position = other.Position;
             this.Orientation = other.Orientation;
+            this.Index = other.Index;
+            this.ParentIndex = other.ParentIndex;
         }
 
         public Joint(string name)
@@ -28,6 +32,8 @@ namespace MioSharp.Rigging
             this.name = name;
             this.Position = new Vector3D();
             this.Orientation = new Quaternion();
+            this.Index = -1;
+            this.ParentIndex = -1;
         }
 
         private readonly string name;

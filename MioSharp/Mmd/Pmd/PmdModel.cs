@@ -13,7 +13,7 @@ namespace MioSharp.Mmd.Pmd
 {
     public class PmdModel
     {
-        private readonly List<Vertex> verteces = new List<Vertex>();
+        private readonly List<Vertex> vertices = new List<Vertex>();
         private readonly int triangleCount;
         private readonly List<int> triangleVertexIndex = new List<int>();
         private readonly List<Material> materials = new List<Material>();
@@ -38,7 +38,7 @@ namespace MioSharp.Mmd.Pmd
             {
                 var vertexInfo = raw.VertexList.Verteces.ElementAt(i);
                 var weightInfo = raw.VertexList.Weights.ElementAt(i);
-                verteces.Add(new Vertex(vertexInfo, weightInfo));
+                vertices.Add(new Vertex(vertexInfo, weightInfo));
             }
 
             triangleCount = (int)raw.PolyList.Count / 3;
@@ -74,9 +74,76 @@ namespace MioSharp.Mmd.Pmd
             }
         }
 
-        public IKArmature GetRestArmature()
+        public Armature GetRestArmature()
         {
-            throw new NotImplementedException();
+            var armature = new Armature();
+            var necessary = Enumerable.Repeat(false, bones.Count).ToArray();
+
+            foreach (var ikChain in ikChains)
+            {
+                foreach (var index in ikChain.AffectedBoneIndices)
+                    necessary[index] = true;
+                necessary[ikChain.EndEffectorIndex] = true;
+            }
+
+            foreach (var vertex in vertices)
+            {
+                necessary[vertex.Bone0Number] = true;
+                necessary[vertex.Bone1Number] = true;
+            }
+
+            for (int boneIndex = 0; boneIndex < bones.Count; boneIndex++)
+            {
+                var bone = bones[boneIndex];
+
+                if (necessary[boneIndex] ||
+                    (new int[]{
+                    Bone.BONE_ROTATE, 
+                    Bone.BONE_ROTATE_TRANSLATE,       
+                    Bone.BONE_IK_ROTATION_INFLUENCED,
+                    Bone.BONE_IK_TARGET,
+                    Bone.BONE_ROTATION_INFLUENCED
+                }.Contains(bone.BoneType)))
+                {
+                    var current = boneIndex;
+                    while (current >= 0)
+                    {
+                        necessary[current] = true;
+                        current = bones[current].ParentIndex;
+                    }
+                }
+            }
+
+            for (int boneIndex = 0; boneIndex < bones.Count; boneIndex++)
+            {
+                var bone = bones[boneIndex];
+                if (necessary[boneIndex])
+                {
+                    Point3D position;
+                    if (bone.ParentIndex >= 0)
+                    {
+                        var parent = bones[bone.ParentIndex];
+                        var v = bone.Position - parent.Position;
+                        position = new Point3D(v.X, v.Y, -v.Z);
+                    }
+                    else
+                    {
+                        position = new Point3D(bone.Position.X, bone.Position.Y, -bone.Position.Z);
+                    }
+                    var joint = new Joint(bone.Name, position, Quaternion.Identity);
+                    armature.AppendJoint(joint);
+                }
+            }
+
+            for (int boneIndex = 0; boneIndex < bones.Count; boneIndex++)
+            {
+                var bone = bones[boneIndex];
+                var joint = armature.GetJoint(bone.Name);
+                if (bone.ParentIndex >= 0)
+                    armature.SetParent(joint.GetName(), bones[bone.ParentIndex].Name);
+            }
+
+            return armature;
         }
 
         internal IKArmature GetIkArmature()

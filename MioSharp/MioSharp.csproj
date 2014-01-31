@@ -60,6 +60,7 @@
     <Compile Include="Mmd\Vmd\VmdAnimation.cs" />
     <Compile Include="Mmd\Vmd\VmdParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Rigging\Armature.cs" />
     <Compile Include="Rigging\Joint.cs" />
     <Compile Include="Rigging\JointChange.cs" />
     <Compile Include="Rigging\Pose.cs" />

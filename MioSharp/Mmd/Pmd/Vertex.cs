@@ -26,10 +26,21 @@ namespace MioSharp.Mmd.Pmd
         }
 
         private readonly Point3D position;
+        public Point3D Potision { get { return position; } }
+
         private readonly Vector3D normal;
+        public Vector3D Normal { get { return normal; } }
+
         private readonly Point texCoord;
+        public Point TexCoord { get { return texCoord; } }
+
         private readonly int bone0Number;
+        public int Bone0Number { get { return bone0Number; } }
+
         private readonly int bone1Number;
+        public int Bone1Number { get { return bone1Number; } }
+
         private readonly float weight;
+        public float Weight { get { return weight; } }
     }
 }

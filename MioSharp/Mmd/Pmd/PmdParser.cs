@@ -255,7 +255,12 @@ namespace MioSharp.Mmd.Pmd
                 name = NameDictionary.ToEnglish(name);
 
                 for (int i = 0; i < data.Length; i++)
-                    data[i] = reader.ReadUInt16();
+                {
+                    int v = reader.ReadUInt16();
+                    if (v == UInt16.MaxValue)
+                        v = -1;
+                    data[i] = v;
+                }
 
                 kind = reader.ReadByte();
                 knum = reader.ReadUInt16();
@@ -267,8 +272,8 @@ namespace MioSharp.Mmd.Pmd
             private readonly string name;
             public string Name { get { return name; } }
 
-            private readonly UInt16[] data = new UInt16[2];
-            public IReadOnlyCollection<UInt16> Data { get { return data; } }
+            private readonly int[] data = new int[2];
+            public IReadOnlyCollection<int> Data { get { return data; } }
 
             private readonly byte kind;
             public byte Kind { get { return kind; } }

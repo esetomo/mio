@@ -11,9 +11,14 @@ namespace MioSharp.Rigging
     {
         public JointChange(Vector3D position, Quaternion orientation)
         {
-            throw new NotImplementedException();
+            this.position = position;
+            this.orientation = orientation;
         }
 
-        public Quaternion Orientation { get { throw new NotImplementedException(); } }
+        private readonly Vector3D position;
+        public Vector3D Position { get { return position; } }
+
+        private readonly Quaternion orientation;
+        public Quaternion Orientation { get { return orientation; } }
     }
 }

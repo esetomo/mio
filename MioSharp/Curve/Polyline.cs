@@ -8,25 +8,37 @@ namespace MioSharp.Curve
 {
     public class Polyline<T>
     {
-        public IEnumerator<ControlPoint<T>> GetControlPointIterator()
-        {
-            throw new NotImplementedException();
-        }
+        private readonly Dictionary<float, T> controlPoints = new Dictionary<float, T>();
 
-        internal void SetControlPoint(double earliestTime, T jointChange)
+        internal void SetControlPoint(float time, T value)
         {
-            throw new NotImplementedException();
+            controlPoints[time] = value;
         }
 
         internal IEnumerable<ControlPoint<T>> GetControlPoints()
         {
-            throw new NotImplementedException();
+            return from item in controlPoints
+                   select new ControlPoint<T>(item.Key, item.Value);
+        }
+
+        internal IEnumerator<ControlPoint<T>> GetControlPointIterator()
+        {
+            return GetControlPoints().GetEnumerator();
         }
     }
 
     public class ControlPoint<T>
     {
-        public double Time { get { throw new NotImplementedException();  } }
-        public T Value { get { throw new NotImplementedException(); } }
+        public ControlPoint(float time, T value)
+        {
+            this.time = time;
+            this.value = value;
+        }
+
+        private readonly float time;
+        public float Time { get { return time;  } }
+
+        private readonly T value;
+        public T Value { get { return value; } }
     }
 }

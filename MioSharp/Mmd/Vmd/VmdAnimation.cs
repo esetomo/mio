@@ -74,7 +74,7 @@ namespace MioSharp.Mmd.Vmd
 
             while (frames.Count > 0)
             {
-                var earliestTime = 1e20;
+                var earliestTime = 1e20f;
                 foreach (var item in frames)
                 {
                     var boneName = item.Key;
@@ -187,7 +187,18 @@ namespace MioSharp.Mmd.Vmd
 
         private Dictionary<string, Polyline<JointChange>> GetBoneCurves()
         {
-            throw new NotImplementedException();
+            var curves = new Dictionary<string, Polyline<JointChange>>();
+            foreach (var boneFrame in boneFrames)
+            {
+                if (!curves.ContainsKey(boneFrame.BoneName))
+                    curves[boneFrame.BoneName] = new Polyline<JointChange>();
+
+                var position = boneFrame.Position;
+                var orientation = boneFrame.Orientation;
+                curves[boneFrame.BoneName].SetControlPoint(boneFrame.FrameNumber, new JointChange(position, orientation));
+            }
+
+            return curves;
         }
     }
 }

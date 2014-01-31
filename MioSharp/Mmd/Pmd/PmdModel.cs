@@ -1,4 +1,5 @@
 ﻿using MioSharp.IK;
+using MioSharp.Rigging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -73,14 +74,46 @@ namespace MioSharp.Mmd.Pmd
             }
         }
 
-        public object GetRestArmature()
+        public IKArmature GetRestArmature()
         {
             throw new NotImplementedException();
         }
 
         internal IKArmature GetIkArmature()
         {
-            throw new NotImplementedException();
+            var restArmature = GetRestArmature();
+            var ikArmature = new IKArmature(restArmature);
+
+            var getCorrespondingRestJoint = new Func<int, Joint>((jointIndex) =>
+            {
+                var bone = bones[jointIndex];
+                var restJoint = restArmature.GetJoint(bone.Name);
+                return restJoint;
+            });
+
+            var ikJointIndexSet = new Dictionary<object, bool>();
+            foreach (var ikChain in ikChains)
+            {
+                var endEffectorJoint = getCorrespondingRestJoint(ikChain.EndEffectorIndex);
+                var endEffector = ikArmature.MakeEndEffector(endEffectorJoint.Index);
+
+                foreach (var ikBoneIndex in ikChain.AffectedBoneIndices)
+                {
+                    var ikRestJoint = getCorrespondingRestJoint(ikBoneIndex);
+                    var ikJointIndex = ikRestJoint.Index;
+                    endEffector.AppendIkJointIndex(ikRestJoint.Index);
+
+                    var joint = restArmature.GetJoint(ikRestJoint.Index);
+                    var jointName = joint.GetName();
+
+                    ikJointIndexSet[ikJointIndex] = true;
+                }
+            }
+
+            foreach (var ikJointIndex in ikJointIndexSet.Keys)
+                ikArmature.MakeIkJoint(ikJointIndex);
+
+            return ikArmature;
         }
 
         internal Rigging.Pose GetIkLessPose(object vpd_pose)

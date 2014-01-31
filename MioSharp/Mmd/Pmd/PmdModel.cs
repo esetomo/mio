@@ -54,6 +54,7 @@ namespace MioSharp.Mmd.Pmd
             {
                 var bone = new Bone(boneInfo); 
                 bones.Add(bone);
+                bone.Index = bones.Count - 1;
                 bonesByName[bone.Name] = bone;
             }
 
